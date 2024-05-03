@@ -1,10 +1,7 @@
 package com.example.projetoEmakers.service;
 
-import com.example.projetoEmakers.data.dto.request.EmprestimoRequestDTO;
 import com.example.projetoEmakers.data.dto.request.LivroRequestDTO;
-import com.example.projetoEmakers.data.dto.response.EmprestimoResponseDTO;
 import com.example.projetoEmakers.data.dto.response.LivroResponseDTO;
-import com.example.projetoEmakers.data.entity.Emprestimo;
 import com.example.projetoEmakers.data.entity.Livro;
 import com.example.projetoEmakers.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;

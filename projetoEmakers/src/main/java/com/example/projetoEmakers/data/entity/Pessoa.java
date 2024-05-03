@@ -2,6 +2,7 @@ package com.example.projetoEmakers.data.entity;
 
 import com.example.projetoEmakers.data.dto.request.PessoaRequestDTO;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +18,8 @@ import jakarta.persistence.GenerationType;
 @NoArgsConstructor
 @Table(name = "pessoa")
 public class Pessoa {
+    @Getter
+    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -32,5 +35,10 @@ public class Pessoa {
         this.nome = nome;
         this.cep = cep;
     }
+
+    public void setPessoa(@NotBlank(message = "O id da pessoa não pode ser nulo") Long idPessoa) {
+        this.idPessoa = idPessoa;
+    }
+
 
 }
