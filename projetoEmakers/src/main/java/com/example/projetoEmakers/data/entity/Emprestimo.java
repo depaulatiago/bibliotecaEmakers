@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,7 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor
 public class Emprestimo {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEmprestimo;
@@ -32,9 +33,9 @@ public class Emprestimo {
     private Pessoa pessoa;
 
     @Builder
-    public Emprestimo(EmprestimoRequestDTO emprestimoRequestDTO) {
-        this.livro.setIdLivro(emprestimoRequestDTO.idLivro());
-        this.pessoa.setIdPessoa(emprestimoRequestDTO.idPessoa());
+    public Emprestimo(EmprestimoRequestDTO emprestimoRequestDTO, @NotNull(message = "O id do livro não pode ser nulo") Livro livro, @NotNull(message = "O id da pessoa não pode ser nulo") Pessoa pessoa) {
+        this.livro = livro;
+        this.pessoa = pessoa;
     }
 
     public Long getIdLivro() {

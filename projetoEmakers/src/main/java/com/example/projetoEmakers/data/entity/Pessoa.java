@@ -32,8 +32,8 @@ public class Pessoa {
     private String cep;
 
     public Pessoa(PessoaRequestDTO pessoaRequestDTO) {
-        this.nome = nome;
-        this.cep = cep;
+        this.nome = pessoaRequestDTO.nome();
+        this.cep = pessoaRequestDTO.cep();
     }
 
     public void setPessoa(@NotBlank(message = "O id da pessoa não pode ser nulo") Long idPessoa) {

@@ -40,9 +40,9 @@ public class Livro {
 
     @Builder
     public Livro(LivroRequestDTO livroRequestDTO) {
-        this.nome = nome;
-        this.autor = autor;
-        this.dataLancamento = dataLancamento;
+        this.nome = livroRequestDTO.nome();
+        this.autor = livroRequestDTO.autor();
+        this.dataLancamento = livroRequestDTO.dataLancamento();
     }
 
 

@@ -40,11 +40,11 @@ public class LivroService {
         return new LivroResponseDTO(livro);
     }
 
-    public String deleteLivro(Long idEmprestimo) {
-        Livro livro = getLivroEntityById(idEmprestimo);
+    public String deleteLivro(Long idLivro) {
+        Livro livro = getLivroEntityById(idLivro);
         livroRepository.delete(livro);
 
-        return "Category id: " + idEmprestimo + " deleted successfully!";
+        return "Category id: " + idLivro + " deleted successfully!";
     }
 
     private Livro getLivroEntityById(Long idLivro) {
