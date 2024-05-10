@@ -5,6 +5,7 @@ import com.example.projetoEmakers.data.dto.response.EmprestimoResponseDTO;
 import com.example.projetoEmakers.data.entity.Emprestimo;
 import com.example.projetoEmakers.data.entity.Livro;
 import com.example.projetoEmakers.data.entity.Pessoa;
+import com.example.projetoEmakers.exceptions.general.EntityNotFoundException;
 import com.example.projetoEmakers.repository.EmprestimoRepository;
 import com.example.projetoEmakers.repository.LivroRepository;
 import com.example.projetoEmakers.repository.PessoaRepository;
@@ -63,6 +64,6 @@ public class EmprestimoService {
     }
 
     private Emprestimo getEmprestimoEntityById(Long idEmprestimo) {
-        return emprestimoRepository.findById(idEmprestimo).orElseThrow(()-> new RuntimeException("Emprestimo não encontrado"));
+        return emprestimoRepository.findById(idEmprestimo).orElseThrow(()-> new EntityNotFoundException(idEmprestimo));
     }
 }
