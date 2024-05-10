@@ -38,6 +38,10 @@ public class Livro {
     @Column(name = "dataLancamento", nullable = false)
     private int dataLancamento;
 
+    @Getter
+    @Column(name = "disponivel", nullable = false)
+    private boolean disponivel = true;
+
     @Builder
     public Livro(LivroRequestDTO livroRequestDTO) {
         this.nome = livroRequestDTO.nome();
@@ -61,4 +65,9 @@ public class Livro {
     public Long setLivro(long idLivro) {
         return this.idLivro = idLivro;
     }
+
+    public boolean setDisponivel(boolean disponivel) {
+        return this.disponivel = disponivel;
+    }
+
 }
