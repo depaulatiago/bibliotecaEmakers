@@ -3,6 +3,7 @@ package com.example.projetoEmakers.controller;
 import com.example.projetoEmakers.service.EmprestimoService;
 import com.example.projetoEmakers.data.dto.request.EmprestimoRequestDTO;
 import com.example.projetoEmakers.data.dto.response.EmprestimoResponseDTO;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "Emprestimo", description = "Endpoints relacionados a emprestimo")
 @RestController
 @RequestMapping("/emprestimo")
 public class EmprestimoController {
@@ -36,6 +38,12 @@ public class EmprestimoController {
     @PutMapping(value = "/update/{idEmprestimo}")
     public ResponseEntity<EmprestimoResponseDTO> updateEmprestimo(@Valid @PathVariable Long idEmprestimo, @RequestBody EmprestimoRequestDTO emprestimoRequestDTO) {
         return ResponseEntity.status(HttpStatus.OK).body(emprestimoService.updateEmprestimo(idEmprestimo, emprestimoRequestDTO));
+    }
+
+    @PutMapping(value = "/devolver/{idEmprestimo}")
+    public ResponseEntity<String> devolverLivro(@PathVariable Long idEmprestimo) {
+        emprestimoService.devolverLivro(idEmprestimo);
+        return ResponseEntity.status(HttpStatus.OK).body("Livro devolvido com sucesso");
     }
 
     @DeleteMapping(value = "/delete/{idEmprestimo}")

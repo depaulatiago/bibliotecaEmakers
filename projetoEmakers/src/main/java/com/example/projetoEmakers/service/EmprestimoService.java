@@ -10,7 +10,6 @@ import com.example.projetoEmakers.repository.EmprestimoRepository;
 import com.example.projetoEmakers.repository.LivroRepository;
 import com.example.projetoEmakers.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,6 +35,11 @@ public class EmprestimoService {
     public EmprestimoResponseDTO createEmprestimo(EmprestimoRequestDTO emprestimoRequestDTO, Livro idLivro, Pessoa idPessoa){
         Livro livro = livroRepository.findById(emprestimoRequestDTO.idLivro().getIdLivro())
                 .orElseThrow(() -> new RuntimeException("Livro não encontrado"));
+
+        if (!livro.isDisponivel()) {
+            throw new RuntimeException("O livro não está disponível para empréstimo");
+        }
+
         Pessoa pessoa = pessoaRepository.findById(emprestimoRequestDTO.idPessoa().getIdPessoa())
                 .orElseThrow(() -> new RuntimeException("Pessoa não encontrada"));
 
@@ -61,6 +65,14 @@ public class EmprestimoService {
         emprestimoRepository.delete(emprestimo);
 
         return "Category id: " + idEmprestimo + " deleted successfully!";
+    }
+
+    public void devolverLivro(Long idEmprestimo) {
+        Emprestimo emprestimo = emprestimoRepository.findById(idEmprestimo)
+                .orElseThrow(() -> new RuntimeException("Empréstimo não encontrado"));
+        Livro livro = emprestimo.getLivro();
+        livro.setDisponivel(true);
+        livroRepository.save(livro);
     }
 
     private Emprestimo getEmprestimoEntityById(Long idEmprestimo) {

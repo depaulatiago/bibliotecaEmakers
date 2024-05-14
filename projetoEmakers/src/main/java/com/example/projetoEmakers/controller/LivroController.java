@@ -3,6 +3,7 @@ package com.example.projetoEmakers.controller;
 import com.example.projetoEmakers.data.dto.request.LivroRequestDTO;
 import com.example.projetoEmakers.data.dto.response.LivroResponseDTO;
 import com.example.projetoEmakers.service.LivroService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import java.util.List;
 
 
+@Tag(name = "Livro", description = "Endpoints relacionados a livro")
 @RestController
 @RequestMapping("/livro")
 public class LivroController {
