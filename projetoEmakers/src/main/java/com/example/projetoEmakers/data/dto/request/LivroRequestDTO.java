@@ -16,10 +16,7 @@ public record LivroRequestDTO(
         String autor,
 
         @NotNull(message = "A data de lançamento do livro não pode ser nula")
-        int dataLancamento,
-
-        @NotNull(message = "A disponibilidade do livro não pode ser nula")
-        boolean disponivel
+        int dataLancamento
 
         ) {
 }

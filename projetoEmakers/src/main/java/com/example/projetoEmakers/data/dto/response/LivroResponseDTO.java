@@ -7,9 +7,11 @@ public record LivroResponseDTO(
     String nome,
     String autor,
     int dataLancamento,
-    boolean disponivel) {
+    boolean disponivel,
+    int contadorEmprestimo
+){
 
     public LivroResponseDTO(Livro livro) {
-        this(livro.getIdLivro(), livro.getNome(), livro.getAutor(), livro.getDataLancamento(), livro.isDisponivel());
+        this(livro.getIdLivro(), livro.getNome(), livro.getAutor(), livro.getDataLancamento(), livro.isDisponivel(), livro.getContadorEmprestimo());
     }
 }

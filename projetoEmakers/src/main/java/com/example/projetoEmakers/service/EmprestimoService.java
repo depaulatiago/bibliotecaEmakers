@@ -46,6 +46,7 @@ public class EmprestimoService {
         Emprestimo emprestimo = new Emprestimo(emprestimoRequestDTO, livro, pessoa);
         emprestimoRepository.save(emprestimo);
         livro.setDisponivel(false);
+        livro.setContadorEmprestimo(livro.getContadorEmprestimo() + 1);
         livroRepository.save(livro);
 
         return  new EmprestimoResponseDTO(emprestimo);

@@ -40,15 +40,25 @@ public class Livro {
 
     @Getter
     @Column(name = "disponivel", nullable = false)
-    private boolean disponivel = true;
+    private boolean disponivel;
+
+    @Getter
+    @Setter
+    @Column(name = "contadorEmprestimo", nullable = true)
+    private Integer contadorEmprestimo;
 
     @Builder
     public Livro(LivroRequestDTO livroRequestDTO) {
         this.nome = livroRequestDTO.nome();
         this.autor = livroRequestDTO.autor();
         this.dataLancamento = livroRequestDTO.dataLancamento();
+        this.disponivel = true;
+        this.contadorEmprestimo = 0;
     }
 
+    public int getContadorEmprestimo() {
+        return contadorEmprestimo != null ? contadorEmprestimo : 0;
+    }
 
     public Long setIdLivro(Long idLivro) {
         return this.idLivro = idLivro;
