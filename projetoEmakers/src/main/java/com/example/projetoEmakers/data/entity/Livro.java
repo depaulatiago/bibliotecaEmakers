@@ -2,6 +2,7 @@ package com.example.projetoEmakers.data.entity;
 
 import com.example.projetoEmakers.data.dto.request.LivroRequestDTO;
 import jakarta.persistence.Table;
+import jakarta.persistence.metamodel.SingularAttribute;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +12,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.GenerationType;
 import lombok.Builder;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
+import java.io.Serializable;
 
 
 @Getter
@@ -78,6 +81,10 @@ public class Livro {
 
     public boolean setDisponivel(boolean disponivel) {
         return this.disponivel = disponivel;
+    }
+
+    public Long getLivro(long idLivro) {
+        return this.idLivro = idLivro;
     }
 
 }

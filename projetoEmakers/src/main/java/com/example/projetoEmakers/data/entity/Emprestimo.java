@@ -46,11 +46,11 @@ public class Emprestimo {
         return pessoa.getIdPessoa();
     }
 
-    public void setLivro(Long idLivro) {
-        this.livro.setIdLivro(idLivro);
+    public void setLivro(Livro livro) {
+        this.livro = livro;
     }
 
-    public void setPessoa(Long idPessoa) {
-        this.pessoa.setIdPessoa((long) idPessoa);
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
 }

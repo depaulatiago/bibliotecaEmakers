@@ -2,14 +2,18 @@ package com.example.projetoEmakers.controller;
 
 import com.example.projetoEmakers.data.dto.request.LivroRequestDTO;
 import com.example.projetoEmakers.data.dto.response.LivroResponseDTO;
+import com.example.projetoEmakers.data.entity.Livro;
 import com.example.projetoEmakers.service.LivroService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import java.util.List;
+
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 
 @Tag(name = "Livro", description = "Endpoints relacionados a livro")
@@ -37,7 +41,8 @@ public class LivroController {
 
     @PutMapping(value = "/update/{idLivro}")
     public ResponseEntity<LivroResponseDTO> updateLivro(@Valid @PathVariable Long idLivro, @RequestBody LivroRequestDTO livroRequestDTO) {
-        return ResponseEntity.status(HttpStatus.OK).body(livroService.updateLivro(idLivro, livroRequestDTO));
+        LivroResponseDTO updatedLivro = livroService.updateLivro(idLivro, livroRequestDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedLivro);
     }
 
     @DeleteMapping(value = "/delete/{idLivro}")

@@ -18,5 +18,4 @@ public record EmprestimoRequestDTO(
         @NotNull(message = "O id da pessoa não pode ser nulo")
         Pessoa idPessoa
     ) {
-
 }

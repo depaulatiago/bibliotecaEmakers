@@ -37,7 +37,8 @@ public class EmprestimoController {
 
     @PutMapping(value = "/update/{idEmprestimo}")
     public ResponseEntity<EmprestimoResponseDTO> updateEmprestimo(@Valid @PathVariable Long idEmprestimo, @RequestBody EmprestimoRequestDTO emprestimoRequestDTO) {
-        return ResponseEntity.status(HttpStatus.OK).body(emprestimoService.updateEmprestimo(idEmprestimo, emprestimoRequestDTO));
+        EmprestimoResponseDTO updatedEmprestimo = emprestimoService.updateEmprestimo(idEmprestimo, emprestimoRequestDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedEmprestimo);
     }
 
     @PutMapping(value = "/devolver/{idEmprestimo}")

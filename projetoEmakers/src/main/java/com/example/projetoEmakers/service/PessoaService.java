@@ -34,8 +34,11 @@ public class PessoaService {
     }
 
     public PessoaResponseDTO updatePessoa(Long idPessoa, PessoaRequestDTO pessoaRequestDTO) {
-        Pessoa pessoa = getPessoaEntityById(idPessoa);
-        pessoa.setPessoa((long) pessoaRequestDTO.idPessoa());
+        Pessoa pessoa = PessoaRepository.findById(idPessoa)
+                .orElseThrow(() -> new EntityNotFoundException(idPessoa));
+
+        pessoa.setNome(pessoaRequestDTO.nome());
+        pessoa.setCep(pessoaRequestDTO.cep());
         PessoaRepository.save(pessoa);
 
         return new PessoaResponseDTO(pessoa);

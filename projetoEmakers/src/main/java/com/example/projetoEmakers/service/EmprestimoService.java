@@ -52,13 +52,15 @@ public class EmprestimoService {
         return  new EmprestimoResponseDTO(emprestimo);
     }
 
-    public EmprestimoResponseDTO updateEmprestimo(Long idEmprestimo, EmprestimoRequestDTO emprestimoRequestDTO){
-        Emprestimo emprestimo = getEmprestimoEntityById(idEmprestimo);
-        emprestimo.setLivro(emprestimoRequestDTO.idLivro().getIdLivro());
-        emprestimo.setPessoa(emprestimoRequestDTO.idPessoa().getIdPessoa());
+    public EmprestimoResponseDTO updateEmprestimo(Long idEmprestimo, EmprestimoRequestDTO emprestimoRequestDTO) {
+        Emprestimo emprestimo = emprestimoRepository.findById(idEmprestimo)
+                .orElseThrow(() -> new EntityNotFoundException(idEmprestimo));
+
+        emprestimo.setPessoa(emprestimoRequestDTO.idPessoa());
+        emprestimo.setLivro(emprestimoRequestDTO.idLivro());
         emprestimoRepository.save(emprestimo);
 
-        return  new EmprestimoResponseDTO(emprestimo);
+        return new EmprestimoResponseDTO(emprestimo);
     }
 
     public String deleteEmprestimo(Long idEmprestimo){

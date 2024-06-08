@@ -38,7 +38,8 @@ public class PessoaController {
 
     @PutMapping(value = "/update/{idPessoa}")
     public ResponseEntity<PessoaResponseDTO> updatePessoa(@Valid @PathVariable Long idPessoa, @RequestBody PessoaRequestDTO pessoaRequestDTO) {
-        return ResponseEntity.status(HttpStatus.OK).body(pessoaService.updatePessoa(idPessoa, pessoaRequestDTO));
+        PessoaResponseDTO updatedPessoa = pessoaService.updatePessoa(idPessoa, pessoaRequestDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedPessoa);
     }
 
     @DeleteMapping(value = "/delete/{idPessoa}")

@@ -3,6 +3,7 @@ package com.example.projetoEmakers.service;
 import com.example.projetoEmakers.data.dto.request.LivroRequestDTO;
 import com.example.projetoEmakers.data.dto.response.LivroResponseDTO;
 import com.example.projetoEmakers.data.entity.Livro;
+
 import com.example.projetoEmakers.exceptions.general.EntityNotFoundException;
 import com.example.projetoEmakers.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,12 @@ public class LivroService {
     }
 
     public LivroResponseDTO updateLivro(Long idLivro, LivroRequestDTO livroRequestDTO) {
-        Livro livro = getLivroEntityById(idLivro);
-        livro.setLivro(livroRequestDTO.idLivro());
+        Livro livro = livroRepository.findById(idLivro)
+                .orElseThrow(() -> new EntityNotFoundException(idLivro));
+
+        livro.setNome(livroRequestDTO.nome());
+        livro.setAutor(livroRequestDTO.autor());
+        livro.setDataLancamento(livroRequestDTO.dataLancamento());
         livroRepository.save(livro);
 
         return new LivroResponseDTO(livro);
